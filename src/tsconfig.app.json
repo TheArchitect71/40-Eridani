@@ -2,11 +2,17 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "module": "es2015",
     "types": []
   },
+  "include": [
+    "**/*.d.ts"
+  ],
+  "files": [
+    "main.ts"
+  ],
   "exclude": [
-    "src/test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "test.ts",
+    "polyfills.ts"
   ]
 }

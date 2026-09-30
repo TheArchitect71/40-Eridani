@@ -1,27 +1,38 @@
-# 40-Eridani Web Application
+# 40-Eridani
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
+Angular frontend for the Express/MongoDB backend in `../41-Eridani`.
+Login, signup, post pagination, image uploads, editing, deleting, and saved authentication are preserved.
 
-## Development server
+## Run locally
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Use Node 26.10.0 (`.nvmrc`). Follow the local MongoDB setup in [41-Eridani](https://github.com/TheArchitect71/41-Eridani), then run its `npm start`. Its API runs on localhost:3000 and uses local MongoDB on port 27018.
 
-## Code scaffolding
+In this directory:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+npm ci
+npm start
+```
 
-## Build
+Open http://127.0.0.1:4200. Stop each foreground process with Ctrl+C.
+Both environment files use localhost; fonts are system fonts and no external assets are required.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Checks
 
-## Running unit tests
+```sh
+npm run build
+npm run typecheck
+npm test -- --browsers=ChromeHeadless
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Set `CHROME_BIN` to a local Chromium executable if Chrome is not installed in its standard location.
+The obsolete Protractor/TSLint targets were removed. Unit tests cover authentication initialization, route guards, pagination mapping, and preserving uploaded image paths.
 
-## Running end-to-end tests
+## Compatibility
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Angular/CLI/build 22.2.0, Material/CDK 22.2.1, RxJS 7.8.2, Zone.js 0.16.3.
+TypeScript 6.0.3 is held by Angular's `>=6.0 <6.1` peer constraint; TypeScript 7 is incompatible.
+Jasmine 6.3.0/types 6.0.0 are held because Jasmine 7 makes global test functions read-only, causing Zone.js 0.16.3's test adapter to fail. This was reproduced in Chromium, and the Jasmine 6 test run passes.
+Module-based components explicitly retain eager/Zone.js change detection so existing subscriptions update the UI under Angular 22. Existing untyped reactive forms and non-strict typing are preserved.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Official references: [Angular compatibility](https://angular.dev/reference/versions), [build migration](https://angular.dev/tools/cli/build-system-migration), and publisher metadata on [npm](https://registry.npmjs.org/@angular/material/latest).

@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 // import { Subscription } from "rxjs";
@@ -5,6 +6,8 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 // import { ErrorService } from "./error.service";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
   templateUrl: "./error.component.html",
   selector: "app-error",
   // styleUrls: ["./error.component.css"]

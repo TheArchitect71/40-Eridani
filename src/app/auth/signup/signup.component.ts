@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";
@@ -5,6 +6,8 @@ import { Subscription } from "rxjs";
 import { AuthService } from "../auth.service";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
   templateUrl: "./signup.component.html",
   styleUrls: ["./signup.component.css"]
 })

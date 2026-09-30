@@ -1,5 +1,6 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription } from "rxjs";
 
@@ -9,6 +10,8 @@ import { mimeType } from "./mime-type.validator";
 import { AuthService } from "../../auth/auth.service";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
   selector: "app-post-create",
   templateUrl: "./post-create.component.html",
   styleUrls: ["./post-create.component.css"]
@@ -18,7 +21,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   enteredContent = "";
   post: Post;
   isLoading = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
   imagePreview: string;
   private mode = "create";
   private postId: string;
@@ -36,12 +39,12 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       .subscribe(authStatus => {
         this.isLoading = false;
       });
-    this.form = new FormGroup({
-      title: new FormControl(null, {
+    this.form = new UntypedFormGroup({
+      title: new UntypedFormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
       }),
-      content: new FormControl(null, { validators: [Validators.required] }),
-      image: new FormControl(null, {
+      content: new UntypedFormControl(null, { validators: [Validators.required] }),
+      image: new UntypedFormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
       })
