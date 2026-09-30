@@ -1,23 +1,41 @@
-# 40-Eridani
+# 40-Eridani — image posts
 
-Angular frontend for the Express/MongoDB backend in `../41-Eridani`.
-Login, signup, post pagination, image uploads, editing, deleting, and saved authentication are preserved.
+A small publishing app for creating and browsing posts with uploaded images. The Angular frontend connects to the Express/MongoDB API in [41-Eridani](https://github.com/TheArchitect71/41-Eridani).
+
+## What you can do
+
+- Sign up, log in, and restore a saved login after reloading.
+- Browse paginated posts with titles, text, and images.
+- Create, edit, and delete your own posts.
+
+## Preview
+
+![A small publishing app for creating and browsing posts with uploaded images](docs/screenshots/desktop.png)
+
+Captured from the running application on September 30, 2026. Any sample records shown are demonstration or isolated test data, not data included with a fresh installation.
+
+<details>
+<summary>Mobile view</summary>
+
+![Mobile a small publishing app for creating and browsing posts with uploaded images](docs/screenshots/mobile.png)
+
+</details>
 
 ## Run locally
 
-Use Node 26.10.0 (`.nvmrc`). Follow the local MongoDB setup in [41-Eridani](https://github.com/TheArchitect71/41-Eridani), then run its `npm start`. Its API runs on localhost:3000 and uses local MongoDB on port 27018.
+Use the Node version in `.nvmrc` (currently 26.10.0) and npm. Run these commands from the repository root.
 
-In this directory:
+Start the sibling **41-Eridani** backend first, following its README. It serves the API on port 3000 and uses local MongoDB on port 27018. Clone both repositories beside one another.
 
 ```sh
+nvm use  # if you manage Node with nvm
 npm ci
 npm start
 ```
 
-Open http://127.0.0.1:4200. Stop each foreground process with Ctrl+C.
-Both environment files use localhost; fonts are system fonts and no external assets are required.
+Open [http://127.0.0.1:4200](http://127.0.0.1:4200). Keep the server in the foreground; stop it with **Ctrl+C**.
 
-## Checks
+## Development
 
 ```sh
 npm run build
@@ -25,14 +43,4 @@ npm run typecheck
 npm test -- --browsers=ChromeHeadless
 ```
 
-Set `CHROME_BIN` to a local Chromium executable if Chrome is not installed in its standard location.
-The obsolete Protractor/TSLint targets were removed. Unit tests cover authentication initialization, route guards, pagination mapping, and preserving uploaded image paths.
-
-## Compatibility
-
-Angular/CLI/build 22.2.0, Material/CDK 22.2.1, RxJS 7.8.2, Zone.js 0.16.3.
-TypeScript 6.0.3 is held by Angular's `>=6.0 <6.1` peer constraint; TypeScript 7 is incompatible.
-Jasmine 6.3.0/types 6.0.0 are held because Jasmine 7 makes global test functions read-only, causing Zone.js 0.16.3's test adapter to fail. This was reproduced in Chromium, and the Jasmine 6 test run passes.
-Module-based components explicitly retain eager/Zone.js change detection so existing subscriptions update the UI under Angular 22. Existing untyped reactive forms and non-strict typing are preserved.
-
-Official references: [Angular compatibility](https://angular.dev/reference/versions), [build migration](https://angular.dev/tools/cli/build-system-migration), and publisher metadata on [npm](https://registry.npmjs.org/@angular/material/latest).
+Browser tests require Chrome or Chromium; set `CHROME_BIN` if it is outside the standard installation path. Angular 22 currently requires TypeScript 6.0.x. The Jasmine 6 test dependencies are retained for compatibility with Zone.js.
