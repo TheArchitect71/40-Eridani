@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, } from "@angular/core";
 // import { Subscription } from "rxjs";
 
@@ -5,6 +6,8 @@ import { AuthService } from "./auth/auth.service";
 // import { ErrorService } from "./error/error.service";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]

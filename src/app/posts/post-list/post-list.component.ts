@@ -1,3 +1,4 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import {PageEvent} from '@angular/material/paginator';
 import { Subscription } from "rxjs";
@@ -7,6 +8,8 @@ import { PostsService } from "../posts.service";
 import { AuthService } from "../../auth/auth.service";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
   selector: "app-post-list",
   templateUrl: "./post-list.component.html",
   styleUrls: ["./post-list.component.css"]

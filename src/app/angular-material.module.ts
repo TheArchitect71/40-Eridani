@@ -58,7 +58,9 @@ import {MatTreeModule} from '@angular/material/tree';
     MatDatepickerModule,
     MatSelectModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AngularMaterialModule {}
